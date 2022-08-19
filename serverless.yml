@@ -1,0 +1,21 @@
+service: auth-lambda-hooks
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.8
+
+
+custom:
+  pythonRequirements:
+    dockerizedPip: true
+    usePoetry: false
+
+
+functions:
+  hello:
+    handler: handler.hello
+
+plugins:
+  - serverless-python-requirements
