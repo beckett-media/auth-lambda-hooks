@@ -1,4 +1,5 @@
 from hooks import post_confirmation
 
-if __name__ == "__main__":
-    post_confirmation.lambda_handler({"username": "testuser"}, None)
+
+def post_confirmation_lambda_handler(event, context):
+    return post_confirmation.lambda_handler(event, context)

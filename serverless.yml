@@ -9,9 +9,12 @@ provider:
 
 custom:
   pythonRequirements:
-    dockerizedPip: true
-    usePoetry: false
+    dockerizePip: true
+    usePoetry: true
 
+package:
+  exclude:
+    - node_modules/**
 
 functions:
   hello:
