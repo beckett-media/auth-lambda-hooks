@@ -9,10 +9,9 @@ jobs:
   deploy:
     name: Deploy Dev
     
-    uses: beckett-media/vault-react/.github/workflows/cont-deployment.yml@main
+    uses: beckett-media/auth-lambda-hooks/.github/workflows/cont-deployment.yml@main
     with:
       AWS_REGION: us-west-1
-      AWS_BUCKET_NAME: dev-vulcan-beckettvaulting-assets-548281136650
-      CF_DISTRIBUTION_ID: E35C28BRGBVHX7
+      FUNCTION_NAME: dev-vulcan-vault-congito-post-confirmation-lambda
       ENV: dev
     secrets: inherit
