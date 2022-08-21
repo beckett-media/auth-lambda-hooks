@@ -17,7 +17,7 @@ class QASettings(Settings):
     ...
 
 class ProdSettings(Settings):
-    ...
+    USER_POOL_ID: str  = "us-west-1_ElMUH3zGV"
 
 def get_config():
     env_name = os.environ.get('ENV', "dev")

@@ -5,7 +5,10 @@ on:
         required: false
         type: string
         default: 'us-west-1'
-      FUNCTION_NAME:
+      POST_CONFIRMATION_FUNCTION_NAME:
+        required: true
+        type: string
+      PRE_SIGNUP_FUNCTION_NAME:
         required: true
         type: string
       ENV:
@@ -54,9 +57,14 @@ jobs:
         run: |
           npx sls package
 
-      - name: Deploy Lambda Code
+      - name: Deploy Post Confirmation Lambda Code
         run: |
-          aws lambda update-function-code --function-name ${{ inputs.FUNCTION_NAME }} --zip-file fileb://.serverless/auth-lambda-hooks.zip 
+          aws lambda update-function-code --function-name ${{ inputs.POST_CONFIRMATION_FUNCTION_NAME }} --zip-file fileb://.serverless/auth-lambda-hooks.zip 
+      
+      - name: Deploy Pre Signup Lambda Code
+        run: |
+          aws lambda update-function-code --function-name ${{ inputs.PRE_SIGNUP_FUNCTION_NAME }} --zip-file fileb://.serverless/auth-lambda-hooks.zip 
+          
 
 
       

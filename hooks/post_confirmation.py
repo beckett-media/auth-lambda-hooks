@@ -11,7 +11,7 @@ def lambda_handler(event, context):
 
     try:
         err = None
-        username = event['username']
+        username = event['userName']
         group = "vaulting"
         congito_service.add_user_to_group(username, group)
     except congito_service.client.exceptions.InvalidParameterException:

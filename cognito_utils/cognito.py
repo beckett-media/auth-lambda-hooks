@@ -23,3 +23,24 @@ class CognitoService():
             Username=username,
             GroupName=group
         )
+    
+    def get_users_by_email(self, email):
+        response =  self.client.list_users(
+            UserPoolId=self.config.USER_POOL_ID,
+            Limit=60,
+            Filter=f'email = "{email}"'
+        )
+        users = response["Users"]
+        while response.get("PaginationToken", None) is not None:
+            response =  self.client.list_users(
+                UserPoolId=self.config.USER_POOL_ID,
+                Limit=60,
+                Filter=f'email = "{email}"',
+                PaginationToken = response["PaginationToken"]
+            )
+            users += response["Users"]
+        return users
+
+    def get_verified_user_by_email(self, email):
+        users = self.get_users_by_email(email)
+        return next((user for user in users if user["UserStatus"] == "CONFIRMED"), None)
