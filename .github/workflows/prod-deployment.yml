@@ -1,0 +1,17 @@
+name: Continuous Deployment [PROD]
+
+on:
+  push:
+    tags:
+      - 'v*'
+    
+jobs:
+  deploy:
+    name: Deploy PROD
+    uses: beckett-media/auth-lambda-hooks/.github/workflows/cont-deployment.yml@main
+    with:
+      AWS_REGION: us-west-1
+      POST_CONFIRMATION_FUNCTION_NAME: prod-vulcan-vault-congito-post-confirmation-lambda
+      PRE_SIGNUP_FUNCTION_NAME: prod-vulcan-vault-congito-pre-signup-lambda
+      ENV: prod
+    secrets: inherit
